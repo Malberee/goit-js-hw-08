@@ -8,8 +8,8 @@ formRef.addEventListener('submit', onSubmit);
 let dataForm = {};
 
 if (localStorage.getItem('feedback-form-state')) {
-  loadSavedInput();
   dataForm = JSON.parse(localStorage.getItem('feedback-form-state'))
+  loadSavedInput();
 } 
 
 function onInput(e) {
@@ -27,10 +27,14 @@ function onSubmit(e) {
 }
 
 function loadSavedInput() {
-  const { email, message } = JSON.parse(
-    localStorage.getItem('feedback-form-state')
-  );
+  // const { email, message } = JSON.parse(
+  //   localStorage.getItem('feedback-form-state')
+  // );
 
-  formRef.elements.email.value = email;
-  formRef.elements.message.value = message;
+  for (let key in dataForm) {
+      formRef.elements[key].value = dataForm[key]
+    }
+
+  // formRef.elements.email.value = email;
+  // formRef.elements.message.value = message;
 }
